@@ -163,117 +163,148 @@
   .hidden{
     display:none;
   }
+  .lang-switch{
+    display:flex;
+    justify-content:flex-end;
+    gap:8px;
+    margin-bottom:8px;
+  }
+  .lang-switch button{
+    margin:0;
+    width:auto;
+    padding:6px 14px;
+    font-size:0.8rem;
+    font-weight:600;
+    border-radius:6px;
+    border:1px solid var(--border);
+    background:#fff;
+    color:var(--muted);
+    cursor:pointer;
+    transition:background 0.15s ease, color 0.15s ease;
+  }
+  .lang-switch button.active{
+    background:var(--accent);
+    color:#fff;
+    border-color:var(--accent);
+  }
+  .lang-switch button:hover:not(.active){
+    background:var(--accent-light);
+  }
 </style>
 </head>
 <body>
 <div class="wrap">
-  <h1>Hoeveel hypotheek kun je krijgen?</h1>
-  <p class="sub">Indicatieve berekening op basis van de financieringslastnormen 2026 (NIBUD). Dit is een indicatie en geen offerte.</p>
+  <div class="lang-switch">
+    <button id="langNl" class="active" type="button">NL</button>
+    <button id="langEn" type="button">EN</button>
+  </div>
+  <h1 data-i18n="title">Hoeveel hypotheek kun je krijgen?</h1>
+  <p class="sub" data-i18n="subtitle">Indicatieve berekening op basis van de financieringslastnormen 2026 (NIBUD). Dit is een indicatie en geen offerte.</p>
 
   <div class="card">
     <div class="grid">
       <div class="field full">
-        <label for="income">Bruto jaarinkomen</label>
-        <input type="number" id="income" min="0" step="1000" value="0" placeholder="bijv. 45000">
-        <div class="hint">Het bruto jaarinkomen waarmee de bank rekent (toetsinkomen).</div>
+        <label for="income" data-i18n="incomeLabel">Bruto jaarinkomen</label>
+        <input type="number" id="income" min="0" step="1000" value="0" placeholder="bijv. 45000" data-i18n-placeholder="incomePlaceholder">
+        <div class="hint" data-i18n="incomeHint">Het bruto jaarinkomen waarmee de bank rekent (toetsinkomen).</div>
       </div>
 
       <div class="field full">
         <div class="checkbox-row">
           <input type="checkbox" id="hasPartner">
-          <label for="hasPartner">Ik heb een partner met inkomen</label>
+          <label for="hasPartner" data-i18n="hasPartnerLabel">Ik heb een partner met inkomen</label>
         </div>
         <div class="student-extra" id="partnerExtra">
-          <label for="partnerIncome">Bruto jaarinkomen partner</label>
-          <input type="number" id="partnerIncome" min="0" step="1000" value="0" placeholder="bijv. 35000">
-          <div class="hint">Bij twee inkomens wordt het financieringslastpercentage bepaald op basis van het gecombineerde toetsinkomen (1x hoogste + 1x laagste inkomen).</div>
+          <label for="partnerIncome" data-i18n="partnerIncomeLabel">Bruto jaarinkomen partner</label>
+          <input type="number" id="partnerIncome" min="0" step="1000" value="0" placeholder="bijv. 35000" data-i18n-placeholder="partnerIncomePlaceholder">
+          <div class="hint" data-i18n="partnerIncomeHint">Bij twee inkomens wordt het financieringslastpercentage bepaald op basis van het gecombineerde toetsinkomen (1x hoogste + 1x laagste inkomen).</div>
         </div>
       </div>
 
       <div class="field">
-        <label for="rate">Hypotheekrente (%)</label>
-        <input type="number" id="rate" min="0" max="10" step="0.01" value="0" placeholder="bijv. 3.80">
+        <label for="rate" data-i18n="rateLabel">Hypotheekrente (%)</label>
+        <input type="number" id="rate" min="0" max="10" step="0.01" value="0" placeholder="bijv. 3.80" data-i18n-placeholder="ratePlaceholder">
       </div>
 
       <div class="field">
-        <label for="energy">Energielabel woning</label>
+        <label for="energy" data-i18n="energyLabel">Energielabel woning</label>
         <select id="energy">
-          <option value="none" selected>Geen geldig label</option>
-          <option value="EFG">E, F of G</option>
-          <option value="CD">C of D</option>
-          <option value="AB">A of B</option>
-          <option value="A++">A+ of A++</option>
-          <option value="A+++">A+++</option>
-          <option value="A++++">A++++</option>
-          <option value="A++++G">A++++ met garantie</option>
+          <option value="none" selected data-i18n="energyNone">Geen geldig label</option>
+          <option value="EFG" data-i18n="energyEFG">E, F of G</option>
+          <option value="CD" data-i18n="energyCD">C of D</option>
+          <option value="AB" data-i18n="energyAB">A of B</option>
+          <option value="A++" data-i18n="energyAplusplus">A+ of A++</option>
+          <option value="A+++" data-i18n="energyAplusplusplus">A+++</option>
+          <option value="A++++" data-i18n="energyA4plus">A++++</option>
+          <option value="A++++G" data-i18n="energyA4plusG">A++++ met garantie</option>
         </select>
       </div>
 
       <div class="field full">
         <div class="checkbox-row">
           <input type="checkbox" id="hasStudentDebt">
-          <label for="hasStudentDebt">Ik heb een studielening (DUO)</label>
+          <label for="hasStudentDebt" data-i18n="hasStudentDebtLabel">Ik heb een studielening (DUO)</label>
         </div>
         <div class="student-extra" id="studentExtra">
-          <label for="studentMonthly">Bruto maandbedrag studielening</label>
-          <input type="number" id="studentMonthly" min="0" step="1" value="0" placeholder="bijv. 110">
-          <div class="hint">Vul het maandelijkse termijnbedrag in zoals dat bij DUO bekend is.</div>
+          <label for="studentMonthly" data-i18n="studentMonthlyLabel">Bruto maandbedrag studielening</label>
+          <input type="number" id="studentMonthly" min="0" step="1" value="0" placeholder="bijv. 110" data-i18n-placeholder="studentMonthlyPlaceholder">
+          <div class="hint" data-i18n="studentMonthlyHint">Vul het maandelijkse termijnbedrag in zoals dat bij DUO bekend is.</div>
         </div>
       </div>
 
       <div class="field full hidden" id="partnerStudentField">
         <div class="checkbox-row">
           <input type="checkbox" id="partnerHasStudentDebt">
-          <label for="partnerHasStudentDebt">Partner heeft een studielening (DUO)</label>
+          <label for="partnerHasStudentDebt" data-i18n="partnerHasStudentDebtLabel">Partner heeft een studielening (DUO)</label>
         </div>
         <div class="student-extra" id="partnerStudentExtra">
-          <label for="partnerStudentMonthly">Bruto maandbedrag studielening partner</label>
-          <input type="number" id="partnerStudentMonthly" min="0" step="1" value="0" placeholder="bijv. 110">
-          <div class="hint">Vul het maandelijkse termijnbedrag in zoals dat bij DUO bekend is.</div>
+          <label for="partnerStudentMonthly" data-i18n="partnerStudentMonthlyLabel">Bruto maandbedrag studielening partner</label>
+          <input type="number" id="partnerStudentMonthly" min="0" step="1" value="0" placeholder="bijv. 110" data-i18n-placeholder="partnerStudentMonthlyPlaceholder">
+          <div class="hint" data-i18n="partnerStudentMonthlyHint">Vul het maandelijkse termijnbedrag in zoals dat bij DUO bekend is.</div>
         </div>
       </div>
     </div>
 
-    <button id="calcBtn">Bereken leencapaciteit</button>
+    <button id="calcBtn" data-i18n="calcBtn">Bereken leencapaciteit</button>
   </div>
 
   <div class="card result-card hidden" id="resultCard">
-    <div class="result-label">Geschatte maximale hypotheek</div>
+    <div class="result-label" data-i18n="resultLabel">Geschatte maximale hypotheek</div>
     <div class="result-amount" id="resultAmount">€ 0</div>
 
     <div class="breakdown">
       <div class="breakdown-row" id="bdIncomeRow">
-        <span>Gecombineerd toetsinkomen</span>
+        <span data-i18n="bdIncomeLabel">Gecombineerd toetsinkomen</span>
         <span id="bdIncome">–</span>
       </div>
       <div class="breakdown-row">
-        <span>Financieringslastpercentage</span>
+        <span data-i18n="bdPercentageLabel">Financieringslastpercentage</span>
         <span id="bdPercentage">–</span>
       </div>
       <div class="breakdown-row">
-        <span>Maximale jaarlijkse woonlast</span>
+        <span data-i18n="bdMaxLastLabel">Maximale jaarlijkse woonlast</span>
         <span id="bdMaxLast">–</span>
       </div>
       <div class="breakdown-row" id="bdStudentRow">
-        <span>Correctie studielening (per jaar)</span>
+        <span data-i18n="bdStudentLabel">Correctie studielening (per jaar)</span>
         <span id="bdStudent">–</span>
       </div>
       <div class="breakdown-row">
-        <span>Hypotheek op basis van woonlast en rente</span>
+        <span data-i18n="bdBaseMortgageLabel">Hypotheek op basis van woonlast en rente</span>
         <span id="bdBaseMortgage">–</span>
       </div>
       <div class="breakdown-row" id="bdEnergyRow">
-        <span>Extra door energielabel</span>
+        <span data-i18n="bdEnergyLabel">Extra door energielabel</span>
         <span id="bdEnergy">–</span>
       </div>
       <div class="breakdown-row total">
-        <span>Totaal geschatte maximale hypotheek</span>
+        <span data-i18n="bdTotalLabel">Totaal geschatte maximale hypotheek</span>
         <span id="bdTotal">–</span>
       </div>
     </div>
   </div>
 
-  <p class="disclaimer">
+  <p class="disclaimer" data-i18n="disclaimer">
     Deze berekening is gebaseerd op de NIBUD-financieringslastpercentages voor 2026 voor niet-AOW-gerechtigden,
     uitgaande van een annuïtaire hypotheek met een looptijd van 30 jaar. De werkelijke maximale hypotheek hangt
     ook af van de waarde van de woning (loan-to-value), eventuele NHG-grenzen, andere lopende leningen of
@@ -283,6 +314,95 @@
 </div>
 
 <script>
+const TRANSLATIONS = {
+  nl: {
+    pageTitle: 'Hypotheek leencapaciteit calculator 2026',
+    title: 'Hoeveel hypotheek kun je krijgen?',
+    subtitle: 'Indicatieve berekening op basis van de financieringslastnormen 2026 (NIBUD). Dit is een indicatie en geen offerte.',
+    incomeLabel: 'Bruto jaarinkomen',
+    incomePlaceholder: 'bijv. 45000',
+    incomeHint: 'Het bruto jaarinkomen waarmee de bank rekent (toetsinkomen).',
+    hasPartnerLabel: 'Ik heb een partner met inkomen',
+    partnerIncomeLabel: 'Bruto jaarinkomen partner',
+    partnerIncomePlaceholder: 'bijv. 35000',
+    partnerIncomeHint: 'Bij twee inkomens wordt het financieringslastpercentage bepaald op basis van het gecombineerde toetsinkomen (1x hoogste + 1x laagste inkomen).',
+    rateLabel: 'Hypotheekrente (%)',
+    ratePlaceholder: 'bijv. 3.80',
+    energyLabel: 'Energielabel woning',
+    energyNone: 'Geen geldig label',
+    energyEFG: 'E, F of G',
+    energyCD: 'C of D',
+    energyAB: 'A of B',
+    energyAplusplus: 'A+ of A++',
+    energyAplusplusplus: 'A+++',
+    energyA4plus: 'A++++',
+    energyA4plusG: 'A++++ met garantie',
+    hasStudentDebtLabel: 'Ik heb een studielening (DUO)',
+    studentMonthlyLabel: 'Bruto maandbedrag studielening',
+    studentMonthlyPlaceholder: 'bijv. 110',
+    studentMonthlyHint: 'Vul het maandelijkse termijnbedrag in zoals dat bij DUO bekend is.',
+    partnerHasStudentDebtLabel: 'Partner heeft een studielening (DUO)',
+    partnerStudentMonthlyLabel: 'Bruto maandbedrag studielening partner',
+    partnerStudentMonthlyPlaceholder: 'bijv. 110',
+    partnerStudentMonthlyHint: 'Vul het maandelijkse termijnbedrag in zoals dat bij DUO bekend is.',
+    calcBtn: 'Bereken leencapaciteit',
+    resultLabel: 'Geschatte maximale hypotheek',
+    bdIncomeLabel: 'Gecombineerd toetsinkomen',
+    bdPercentageLabel: 'Financieringslastpercentage',
+    bdMaxLastLabel: 'Maximale jaarlijkse woonlast',
+    bdStudentLabel: 'Correctie studielening (per jaar)',
+    bdBaseMortgageLabel: 'Hypotheek op basis van woonlast en rente',
+    bdEnergyLabel: 'Extra door energielabel',
+    bdTotalLabel: 'Totaal geschatte maximale hypotheek',
+    perYear: '/ jaar',
+    disclaimer: 'Deze berekening is gebaseerd op de NIBUD-financieringslastpercentages voor 2026 voor niet-AOW-gerechtigden, uitgaande van een annu\u00eftaire hypotheek met een looptijd van 30 jaar. De werkelijke maximale hypotheek hangt ook af van de waarde van de woning (loan-to-value), eventuele NHG-grenzen, andere lopende leningen of alimentatieverplichtingen, en het exacte toetsbeleid van de geldverstrekker. Aan deze uitkomst kunnen geen rechten worden ontleend.'
+  },
+  en: {
+    pageTitle: 'Mortgage borrowing capacity calculator 2026',
+    title: 'How much mortgage can you get?',
+    subtitle: 'Indicative calculation based on the 2026 Dutch financing cost standards (NIBUD). This is an estimate, not a formal offer.',
+    incomeLabel: 'Gross annual income',
+    incomePlaceholder: 'e.g. 45000',
+    incomeHint: 'The gross annual income used by the lender (assessment income).',
+    hasPartnerLabel: 'I have a partner with income',
+    partnerIncomeLabel: "Partner's gross annual income",
+    partnerIncomePlaceholder: 'e.g. 35000',
+    partnerIncomeHint: 'With two incomes, the financing cost percentage is based on the combined assessment income (1x highest + 1x lowest income).',
+    rateLabel: 'Mortgage interest rate (%)',
+    ratePlaceholder: 'e.g. 3.80',
+    energyLabel: 'Energy label of the property',
+    energyNone: 'No valid label',
+    energyEFG: 'E, F or G',
+    energyCD: 'C or D',
+    energyAB: 'A or B',
+    energyAplusplus: 'A+ or A++',
+    energyAplusplusplus: 'A+++',
+    energyA4plus: 'A++++',
+    energyA4plusG: 'A++++ with guarantee',
+    hasStudentDebtLabel: 'I have a student loan (DUO)',
+    studentMonthlyLabel: 'Gross monthly student loan payment',
+    studentMonthlyPlaceholder: 'e.g. 110',
+    studentMonthlyHint: 'Enter the monthly instalment amount as known to DUO.',
+    partnerHasStudentDebtLabel: 'Partner has a student loan (DUO)',
+    partnerStudentMonthlyLabel: "Partner's gross monthly student loan payment",
+    partnerStudentMonthlyPlaceholder: 'e.g. 110',
+    partnerStudentMonthlyHint: 'Enter the monthly instalment amount as known to DUO.',
+    calcBtn: 'Calculate borrowing capacity',
+    resultLabel: 'Estimated maximum mortgage',
+    bdIncomeLabel: 'Combined assessment income',
+    bdPercentageLabel: 'Financing cost percentage',
+    bdMaxLastLabel: 'Maximum annual housing cost',
+    bdStudentLabel: 'Student loan correction (per year)',
+    bdBaseMortgageLabel: 'Mortgage based on housing cost and interest rate',
+    bdEnergyLabel: 'Extra due to energy label',
+    bdTotalLabel: 'Total estimated maximum mortgage',
+    perYear: '/ year',
+    disclaimer: 'This calculation is based on the NIBUD financing cost percentages for 2026 for non-state-pension-age applicants, assuming an annuity mortgage with a 30-year term. The actual maximum mortgage also depends on the value of the property (loan-to-value), any NHG limits, other outstanding loans or maintenance obligations, and the exact assessment policy of the lender. No rights can be derived from this result.'
+  }
+};
+
+let currentLang = 'nl';
+
 // Financieringslastpercentages 2026, niet-AOW-gerechtigden
 // Rij 0 = inkomen < 30.000, daarna per 1.000 euro van 30.000 t/m 125.000
 // Kolommen = rentebanden: <=1.5, 1.501-2.0, 2.001-2.5, 2.501-3.0, 3.001-3.5, 3.501-4.0,
@@ -308,7 +428,8 @@ const ENERGY_EXTRA = {
 };
 
 function formatEuro(n){
-  return new Intl.NumberFormat('nl-NL', {style:'currency', currency:'EUR', maximumFractionDigits:0}).format(n);
+  const locale = currentLang === 'en' ? 'en-IE' : 'nl-NL';
+  return new Intl.NumberFormat(locale, {style:'currency', currency:'EUR', maximumFractionDigits:0}).format(n);
 }
 
 function getRateBandIndex(rate){
@@ -384,8 +505,8 @@ function calculate(){
     incomeRow.style.display = 'none';
   }
 
-  document.getElementById('bdPercentage').textContent = (percentage * 100).toFixed(1).replace('.', ',') + '%';
-  document.getElementById('bdMaxLast').textContent = formatEuro(maxYearlyHousingCost) + ' / jaar';
+  document.getElementById('bdPercentage').textContent = (percentage * 100).toFixed(1).replace('.', currentLang === 'en' ? '.' : ',') + '%';
+  document.getElementById('bdMaxLast').textContent = formatEuro(maxYearlyHousingCost) + ' ' + TRANSLATIONS[currentLang].perYear;
 
   const studentRow = document.getElementById('bdStudentRow');
   if(totalStudentMonthly > 0){
@@ -426,6 +547,37 @@ document.getElementById('hasStudentDebt').addEventListener('change', function(){
 });
 
 document.getElementById('calcBtn').addEventListener('click', calculate);
+
+function applyTranslations(lang){
+  currentLang = lang;
+  document.documentElement.lang = lang;
+  const dict = TRANSLATIONS[lang];
+
+  document.title = dict.pageTitle;
+
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if(dict[key] !== undefined){
+      el.textContent = dict[key];
+    }
+  });
+
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    if(dict[key] !== undefined){
+      el.setAttribute('placeholder', dict[key]);
+    }
+  });
+
+  document.getElementById('langNl').classList.toggle('active', lang === 'nl');
+  document.getElementById('langEn').classList.toggle('active', lang === 'en');
+
+  // Recalculate so currency/number formatting and dynamic strings update too
+  calculate();
+}
+
+document.getElementById('langNl').addEventListener('click', () => applyTranslations('nl'));
+document.getElementById('langEn').addEventListener('click', () => applyTranslations('en'));
 
 // Calculate once on load with default values
 calculate();
